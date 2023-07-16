@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("Discord.gg/nJUeBxhCRT")
+print("Hey dec and crcker, don't touch it because i'm a Ethical hacker")
