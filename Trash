@@ -1,4 +1,4 @@
-setfpscap(120)
-print("120")
+setfpscap(60)
+print("60")
 --// print("Hey dec and crcker, don't touch it because i'm a Ethical hacker")
 --\\ Thanks
