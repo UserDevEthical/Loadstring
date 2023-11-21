@@ -34,4 +34,4 @@
                                   ,#/*.       ..,,,,,,,,....          ,/#
 
 ]]--
---[[ return setfenv(function(...) return IIHeOOfcG(...) end, setmetatable({ ["IIHeOOfcG"] = ... }, { __index = getfenv((...)) })) ]]-- 
+return setfenv(function(...) return IIHeOOfcG(...) end, setmetatable({ ["IIHeOOfcG"] = ... }, { __index = getfenv((...)) })) ]]-- 
