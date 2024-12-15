@@ -2,7 +2,7 @@ repeat task.wait() until game:IsLoaded()
 local TablePlace = {7449423635,2753915549,4442272183}
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Read", -- Required
-	Text = "I don't sell Cokka", -- Required
+	Text = "All scripts are broken after update, please wait for me to fix it~", -- Required
 	Icon = "rbxassetid://9709149431", -- Optional
 	Duration = 5
 })
