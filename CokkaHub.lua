@@ -7,8 +7,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 	Duration = 999
 })
 if table.find(TablePlace,game.PlaceId) then
-    _G.Game = "BF"
-    _G.Key = "Xzt7M9IAfF"
+    getgenv().Game = "BF"
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/BF-New.lua"))()
 else
     game.Players.LocalPlayer:Kick("not Support")
