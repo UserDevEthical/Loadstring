@@ -4,7 +4,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Read", -- Required
 	Text = "I'm Updating, Wait me ~~~", -- Required
 	Icon = "rbxassetid://9709149431", -- Optional
-	Duration = 999
+	Duration = 10
 })
 if table.find(TablePlace,game.PlaceId) then
     getgenv().Game = "BF"
