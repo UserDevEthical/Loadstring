@@ -1,5 +1,5 @@
 repeat task.wait() until game:IsLoaded()
-local TablePlace = {7449423635,2753915549,4442272183}
+local TablePlace = {7449423635,2753915549,4442272183, 126884695634066}
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Read!", -- Required
 	Text = "Wlc, Have a good experience with Cokka! (Script is Loading...)", -- Required
