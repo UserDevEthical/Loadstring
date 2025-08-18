@@ -30,7 +30,7 @@ function Loader.new()
             return
         end
 
-        getgenv().Game = "BF" -- or "name"
+        -- getgenv().Game = "name" -- or "name" ("BF")
         if showNotif then
             pcall(function()
                 game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -49,7 +49,9 @@ function Loader.new()
 end
 
 local Load = Loader.new()
+getgenv().Game = "BF"
 Load:add("Blox Fruits", {7449423635, 2753915549, 4442272183}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/BF-New.lua"})
 Load:add("Grow A Garden", {126884695634066}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/BF-New.lua"})
 
 Load:run(true) -- true & false
+
