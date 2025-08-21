@@ -1,5 +1,12 @@
 repeat task.wait() until game:IsLoaded()
 
+-- Don't execute twice
+if getgenv()._LoaderExecuted then
+    warn("!")
+    return
+end
+getgenv()._LoaderExecuted = true
+
 local Loader = {}
 Loader.__index = Loader
 
@@ -35,12 +42,13 @@ function Loader.new()
             pcall(function()
                 game:GetService("StarterGui"):SetCore("SendNotification", {
                     Title = "Loader",
-                    Text = "Loading " .. name .. "\nDon't execute twice",
+                    Text = "Loading " .. name .. "\n(Ty for using!)",
                     Icon = "rbxassetid://9709149431",
                     Duration = 15
                 })
             end)
         end
+
         for _, url in ipairs(info.S) do
             LoadS(url)
         end
@@ -54,4 +62,3 @@ Load:add("Blox Fruits", {7449423635, 2753915549, 4442272183}, {"https://raw.gith
 Load:add("Grow A Garden", {126884695634066}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"})
 
 Load:run(true) -- true & false
-
