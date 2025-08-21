@@ -50,7 +50,8 @@ end
 
 local Load = Loader.new()
 
-Load:add("Blox Fruits", {7449423635, 2753915549, 4442272183}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/BF-New.lua"})
-Load:add("Grow A Garden", {126884695634066}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/BF-New.lua"})
+Load:add("Blox Fruits", {7449423635, 2753915549, 4442272183}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"})
+Load:add("Grow A Garden", {126884695634066}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"})
 
 Load:run(true) -- true & false
+
