@@ -32,17 +32,17 @@ function Loader.new()
     end
     function self:run(showNotif)
         local name, info = self:get(game.PlaceId)
-        if not info then
-            game.Players.LocalPlayer:Kick("Game not supported")
-            return
-        end
+        --if not info then
+            --game.Players.LocalPlayer:Kick("Game not supported")
+            --return
+        --end
 
         getgenv().Game = "BF" -- or name
         if showNotif then
             pcall(function()
                 game:GetService("StarterGui"):SetCore("SendNotification", {
                     Title = "Loader",
-                    Text = "Loading " .. name .. "\n(...Updating!)",
+                    Text = "Loading " .. name .. "\n(...Whats new?!)",
                     Icon = "rbxassetid://9709149431",
                     Duration = 15
                 })
@@ -62,6 +62,7 @@ Load:add("Blox Fruits", {7449423635, 2753915549, 4442272183}, {"https://raw.gith
 Load:add("Grow A Garden", {126884695634066}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"})
 
 Load:run(true) -- true & false
+
 
 
 
