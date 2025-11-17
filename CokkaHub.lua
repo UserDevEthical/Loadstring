@@ -1,72 +1,80 @@
-repeat task.wait() until game:IsLoaded()
-
--- Don't execute twice
-if getgenv()._LoaderExecuted then
-    warn("!")
-    return
-end
+--// Don't execute twice
+if getgenv()._LoaderExecuted then warn("!") return end
 getgenv()._LoaderExecuted = true
 
+--// Silent Load Function
+local function LoadURL(url, retries)
+    retries = retries or 2
+
+    local ok, fn = pcall(function()
+        return loadstring(game:HttpGet(url))
+    end)
+
+    if ok and fn then
+        task.spawn(fn)
+        return
+    end
+
+    if retries > 0 then
+        task.delay(0.25, function()
+            LoadURL(url, retries - 1)
+        end)
+    end
+end
+
+--// Loader Class
 local Loader = {}
 Loader.__index = Loader
 
-local function LoadS(url, retries)
-    retries = retries or 2
-    local ok, fn = pcall(function() return loadstring(game:HttpGet(url)) end)
-    if ok and fn then
-        task.spawn(fn)
-    elseif retries > 0 then
-        task.delay(0.25 + math.random() * 0.1, function() LoadS(url, retries - 1) end)
-    end
-end
-
 function Loader.new()
-    local self = setmetatable({G = {}}, Loader)
-    function self:add(name, P, S)
-        self.G[name] = {P = P, S = S}
-    end
-    function self:get(placeId)
-        for name, info in pairs(self.G) do
-            if table.find(info.P, placeId) then return name, info end
-        end
-    end
-    function self:run(showNotif)
-        local name, info = self:get(game.PlaceId)
-        --if not info then
-            --game.Players.LocalPlayer:Kick("Game not supported")
-            --return
-        --end
-
-        getgenv().Game = "BF" -- or name
-        if showNotif then
-            pcall(function()
-                game:GetService("StarterGui"):SetCore("SendNotification", {
-                    Title = "Loader",
-                    Text = "Loading " .. name .. "\n(...Wanna Update?!)",
-                    Icon = "rbxassetid://9709149431",
-                    Duration = 15
-                })
-            end)
-        end
-
-        for _, url in ipairs(info.S) do
-            LoadS(url)
-        end
-    end
-    return self
+    return setmetatable({Games = {}}, Loader)
 end
 
-local Load = Loader.new()
+function Loader:Add(name, placeIds, scriptUrls)
+    self.Games[name] = {P = placeIds, S = scriptUrls}
+end
 
-Load:add("Blox Fruits", {7449423635, 2753915549, 4442272183}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"})
-Load:add("Grow A Garden", {126884695634066}, {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"})
+function Loader:Get(placeId)
+    for name, data in next, self.Games do
+        if table.find(data.P, placeId) then
+            return name, data.S
+        end
+    end
+end
 
-Load:run(true) -- true & false
+function Loader:Run(showNotif)
+    local name, scripts = self:Get(game.PlaceId)
+    if not scripts then return end
 
+    getgenv().Game = "BF" -- or name
 
+    if showNotif then
+        pcall(function()
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                 Title = "Loader",
+                 Text = "Loading " .. name .. "\n(...Wanna Update?!)",
+                 Icon = "rbxassetid://9709149431",
+                 Duration = 15
+             })
+        end)
+    end
 
+    for _, url in ipairs(scripts) do
+        LoadURL(url, 2) -- Retry 2 times
+    end
+end
 
+--// Initialize
+local L = Loader.new()
 
+L:Add("Blox Fruits",
+    {7449423635, 2753915549, 4442272183},
+    {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
+)
 
+L:Add("Grow A Garden",
+    {126884695634066},
+    {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
+)
 
-
+L:Run(true) -- true/false
