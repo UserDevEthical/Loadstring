@@ -34,7 +34,7 @@ local function LoadURL(url, retries)
         return true
     end
 
-    --// Retry nếu fail
+    --// Retry if fail
     if retries > 0 then
         task.wait(0.25)
         return LoadURL(url, retries - 1)
@@ -107,6 +107,7 @@ L:Add("Grow A Garden",
 )
 
 L:Run(true) -- true/false
+
 
 
 
