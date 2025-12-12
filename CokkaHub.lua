@@ -2,25 +2,49 @@
 if getgenv()._LoaderExecuted then warn("!") return end
 getgenv()._LoaderExecuted = true
 
---// Silent Load Function
+--// Safe Load Function (Stable)
 local function LoadURL(url, retries)
     retries = retries or 2
 
-    local ok, fn = pcall(function()
-        return loadstring(game:HttpGet(url))
-    end)
-
-    if ok and fn then
-        task.spawn(fn)
-        return
-    end
-
-    if retries > 0 then
-        task.delay(0.25, function()
-            LoadURL(url, retries - 1)
+    local function safeHttpGet(u)
+        -- Fallback cho executor yếu
+        local ok, res = pcall(function()
+            return game:HttpGet(u)
         end)
+        return ok and res or nil
     end
+
+    local function safeLoad(str)
+        if not str then return nil end
+
+        -- Fallback loadstring
+        local ok, fn = pcall(function()
+            local loader = loadstring or load
+            return loader(str)
+        end)
+
+        return ok and fn or nil
+    end
+
+    --// Try load
+    local source = safeHttpGet(url)
+    local fn = safeLoad(source)
+
+    if fn then
+        task.spawn(fn)
+        return true
+    end
+
+    --// Retry nếu fail
+    if retries > 0 then
+        task.wait(0.25)
+        return LoadURL(url, retries - 1)
+    end
+
+    warn("[Loader] Failed to load:", url)
+    return false
 end
+
 
 --// Loader Class
 local Loader = {}
@@ -44,23 +68,29 @@ end
 
 function Loader:Run(showNotif)
     local name, scripts = self:Get(game.PlaceId)
-    if not scripts then return end
+    if not scripts then
+        warn("[Loader] No game matched current PlaceId")
+        return
+    end
 
-    getgenv().Game = "BF" -- or name
+    getgenv().Game = "BF"
 
     if showNotif then
         pcall(function()
             game:GetService("StarterGui"):SetCore("SendNotification", {
-                 Title = "Loader",
-                 Text = "Loading " .. name .. "\n(...Wanna Update?!)",
-                 Icon = "rbxassetid://9709149431",
-                 Duration = 15
-             })
+                Title = "Loader",
+                Text = "Loading " .. name .. "\n(...Wanna Update?!)",
+                Icon = "rbxassetid://9709149431",
+                Duration = 15
+            })
         end)
     end
 
     for _, url in ipairs(scripts) do
-        LoadURL(url, 2) -- Retry 2 times
+        local ok = LoadURL(url, 3)
+        if not ok then
+            warn("[Loader] Could not load:", url)
+        end
     end
 end
 
@@ -78,3 +108,4 @@ L:Add("Grow A Garden",
 )
 
 L:Run(true) -- true/false
+
