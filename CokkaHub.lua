@@ -1,6 +1,6 @@
 --// Don't execute twice
-if getgenv()._LoaderExecuted then warn("!") return end
-getgenv()._LoaderExecuted = true
+-- if getgenv()._LoaderExecuted then warn("!") return end
+-- getgenv()._LoaderExecuted = true
 
 --// Safe Load Function (Stable)
 local function LoadURL(url, retries)
@@ -108,4 +108,5 @@ L:Add("Grow A Garden",
 )
 
 L:Run(true) -- true/false
+
 
