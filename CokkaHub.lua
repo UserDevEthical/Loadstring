@@ -7,7 +7,6 @@ local function LoadURL(url, retries)
     retries = retries or 2
 
     local function safeHttpGet(u)
-        -- Fallback cho executor yếu
         local ok, res = pcall(function()
             return game:HttpGet(u)
         end)
@@ -108,5 +107,6 @@ L:Add("Grow A Garden",
 )
 
 L:Run(true) -- true/false
+
 
 
