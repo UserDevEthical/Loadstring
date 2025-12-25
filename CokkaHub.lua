@@ -64,7 +64,12 @@ function Loader:Get(placeId)
         end
     end
 end
-
+game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Loader",
+        Text = "Script is Updating!",
+        Icon = "rbxassetid://9709149431",
+        Duration = 30
+    })
 function Loader:Run(showNotif)
     local name, scripts = self:Get(game.PlaceId)
     if not scripts then
@@ -107,6 +112,7 @@ L:Add("Grow A Garden",
 )
 
 L:Run(true) -- true/false
+
 
 
 
