@@ -97,7 +97,7 @@ end
 local L = Loader.new()
 
 L:Add("Blox Fruits",
-    {85211729168715, 79091703265657, 100117331123089},
+    {2753915549, 4442272183, 7449423635},
     {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
 )
 
@@ -107,6 +107,7 @@ L:Add("Grow A Garden",
 )
 
 L:Run(true) -- true/false
+
 
 
 
