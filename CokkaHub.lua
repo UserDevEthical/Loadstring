@@ -111,7 +111,12 @@ L:Add("Grow A Garden",
     {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
 )
 
+L:Add("99 Nights in the Forest",
+    {7326934954},
+    {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
+)
 L:Run(true) -- true/false
+
 
 
 
