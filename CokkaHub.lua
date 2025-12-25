@@ -53,13 +53,13 @@ function Loader.new()
     return setmetatable({Games = {}}, Loader)
 end
 
-function Loader:Add(name, placeIds, scriptUrls)
-    self.Games[name] = {P = placeIds, S = scriptUrls}
+function Loader:Add(name, gameIds, scriptUrls)
+    self.Games[name] = {P = gameIds, S = scriptUrls}
 end
 
-function Loader:Get(placeId)
+function Loader:Get(gameId)
     for name, data in next, self.Games do
-        if table.find(data.P, placeId) then
+        if table.find(data.P, gameId) then
             return name, data.S
         end
     end
@@ -71,9 +71,9 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
         Duration = 30
     })
 function Loader:Run(showNotif)
-    local name, scripts = self:Get(game.PlaceId)
+    local name, scripts = self:Get(game.GameId)
     if not scripts then
-        warn("[Loader] No game matched current PlaceId")
+        warn("[Loader] No game matched current GameId")
         return
     end
 
@@ -102,16 +102,17 @@ end
 local L = Loader.new()
 
 L:Add("Blox Fruits",
-    {2753915549, 4442272183, 7449423635},
+    {994732206},
     {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
 )
 
 L:Add("Grow A Garden",
-    {126884695634066},
+    {7436755782},
     {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
 )
 
 L:Run(true) -- true/false
+
 
 
 
