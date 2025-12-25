@@ -78,7 +78,7 @@ function Loader:Run(showNotif)
         pcall(function()
             game:GetService("StarterGui"):SetCore("SendNotification", {
                 Title = "Loader",
-                Text = "Loading " .. name .. "\n(...Wanna Update?!)",
+                Text = "Loading " .. name .. "\n(...Fixing)",
                 Icon = "rbxassetid://9709149431",
                 Duration = 15
             })
@@ -107,6 +107,7 @@ L:Add("Grow A Garden",
 )
 
 L:Run(true) -- true/false
+
 
 
 
