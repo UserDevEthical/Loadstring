@@ -66,7 +66,7 @@ function Loader:Get(gameId)
 end
 game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Loader",
-        Text = "Wait for the next update if you still don't see anything after that!",        
+        Text = "There are a few bugs in Blox Fruits, which will be fixed in the next update!",        
         Icon = "rbxassetid://9709149431",
         Duration = 30
     })
@@ -116,6 +116,7 @@ L:Add("99 Nights in the Forest",
     {"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/Loader.lua"}
 )
 L:Run(true) -- true/false
+
 
 
 
