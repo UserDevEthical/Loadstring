@@ -78,7 +78,7 @@ function Loader:Run(showNotif)
         pcall(function()
             game:GetService("StarterGui"):SetCore("SendNotification", {
                 Title = "Loader",
-                Text = "Loading " .. name .. "\n(...Updating Something!!)",
+                Text = "Loading " .. name .. "\n(...Updating!!)",
                 Icon = "rbxassetid://9709149431",
                 Duration = 30
             })
